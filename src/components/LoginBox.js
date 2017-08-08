@@ -10,6 +10,7 @@ class LoginBox extends Component {
         var username = {email:"michael@mail.com",password:"1234"};
         if(emailElm==username.email && passwordElm==username.password){
             alert("SUCCESS LOGIN");
+            window.location.assign('/checkclaim');
         } else {
             alert("FAILED LOGIN");
         }

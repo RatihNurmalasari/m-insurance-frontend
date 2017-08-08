@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import LoginBox from './components/LoginBox.js';
-//import '../public/assets/css/styles.css';
 
 class App extends Component {
   render() {
