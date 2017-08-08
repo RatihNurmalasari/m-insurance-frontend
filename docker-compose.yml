@@ -1,0 +1,5 @@
+jenkins:
+  image: photondevops/photon-devops:manulife-poc.1.0
+  ports:
+    #Host:Docker
+    - "5050:3000"
