@@ -1,32 +1,53 @@
 body {
     margin: 0;
+    padding: 0;
     width: 100%;
+    font-family: "Roboto", sans-serif;
 }
-
 .login{
     overflow: hidden;
-    height: 100vh;
 }
 .login>img{
     opacity: 0.5;
-    width: 100%;
 }
 
 /*login form start*/
+.login-container>div>img{
+    opacity: 0.5;
+}
 .login-page {
     width: 360px;
-    padding: 8% 0 0;
-    margin-right: 5%;
+    padding: 101px 0 0;
     position: absolute;
     top: 0px;
-    right: 0;
+    margin-left: 38%;
 }
-.loginHeader {
-    font-family: sans-serif;
-    font-size: 25px;
-    margin-top: 0;
-    font-weight: 700;
+.login-form>p {
     text-align: left;
+    margin-top: 0;
+    font-weight: 100;
+    margin-bottom: 20px;
+}
+.login-form>button>img {
+    width: 10px;
+    margin-right: 8px;
+}
+.login-form>p:nth-child(2), .login-form>p:nth-child(5){
+    font-weight: 400
+}
+
+.login-form>p:nth-child(7) {
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.loginHeader {
+    font-size: 25px;
+    padding: 20px 30px 20px 30px;
+    text-align: left;
+    background-color: #0d3326;
+    color: white;
+    font-weight: 100;
 }
 .form {
     position: relative;
@@ -34,26 +55,22 @@ body {
     background: #FFFFFF;
     max-width: 360px;
     margin: 0 auto 20px;
-    padding: 45px;
+    padding: 30px;
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 .form input {
-    font-family: "Roboto", sans-serif;
     outline: 0;
-    background: #f2f2f2;
     width: 100%;
-    border: 0;
     margin: 0 0 15px;
-    padding: 15px;
+    padding: 9px;
     box-sizing: border-box;
     font-size: 14px;
 }
 .form button {
-    font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
-    background: #b7b7b7;
+    background: #00693B;
     width: 100%;
     border: 0;
     padding: 15px;
@@ -62,6 +79,23 @@ body {
     -webkit-transition: all 0.3 ease;
     transition: all 0.3 ease;
     cursor: pointer;
+}
+
+.email-error, .password-eror, .claim-number-error, .taxonomy-error {
+    color: red;
+    font-style: italic;
+}
+span.password-watch {
+    background-image: url(../images/show.png);
+    position: absolute;
+    right: 38px;
+    width: 20px;
+    height: 14px;
+    margin-top: 11px;
+    cursor: pointer;
+}
+.input-error{
+    border-color: red;
 }
 
 .form .message {
@@ -109,22 +143,137 @@ body {
 }
 input#remember-me {
     float: left;
-    width: 20px;
+    width: 19px;
     height: 20px;
-    margin-right: 10px;
+    margin-right: 6px;
 }
 .form label{
     float: left;
     font-size: 15px;
-    font-family: "Roboto", sans-serif;
     margin-left: -6px;
 }
 #forgotUsername, #signUp {
-    font-family: "Roboto", sans-serif;
     font-size: 15px;
     text-decoration: underline;
     cursor: pointer;
     margin-top: 10px;
     display: inline-block;
+    color: #00693B;
+}
+.forgotSection{
+    display: block;
+    margin-top: 10px;
+    height: 28px;
+}
+.forgotSection>span:nth-child(1){
+    float: left;
+}
+.forgotSection>span:nth-child(2){
+    float: right;
 }
 /*login form end*/
+
+/*claim form start*/
+.claim-container {
+    display: inline-block;
+    padding-bottom: 20px;
+    width: 100%;
+}
+.login-container>.header>img {
+    opacity: 1;
+    width: 100%;
+}
+.header{
+    display: block;
+    width: 100%;
+}
+.claim-container>.header>img:nth-child(2){
+    margin-left: 20px;
+}
+.claimText {
+    margin-left: 20px;
+    font-size: 20px;
+    color: #00693B;
+    margin-right: 20px;
+    border-bottom: 1px solid #c3d2db;
+}
+.claimText>p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+form.claim-form {
+    margin: 0 20px 0 20px;
+    width: 75%;
+    display: inline-block;
+}
+span.claim-number {
+    display: inline-block;
+    width: 50%;
+    float: left;
+}
+span.taxonomy {
+    display: inline-block;
+    width: 50%;
+    float: left;
+}
+input#claim-number {
+    width: 65%;
+    height: 27px;
+    box-sizing: border-box;
+}
+input#taxonomy {
+    width: 65%;
+    height: 27px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+span.taxonomy-img {
+    background-image: url(../images/dropdown.png);
+    position: absolute;
+    width: 16px;
+    height: 9px;
+    margin-top: 9px;
+    cursor: pointer;
+    right: 37%;
+}
+.claim-submit-container {
+    margin: 20px 20px 0 20px;
+}
+.claim-submit-container>button {
+    text-transform: uppercase;
+    outline: 0;
+    background: #00693B;
+    width: 120px;
+    border: 0;
+    height: 34px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+    float: right;
+}
+/*claim form end*/
+
+/*claim details form start*/
+.claim-detail-text {
+    margin-left: 20px;
+    font-size: 20px;
+    color: #00693B;
+    margin-right: 20px;
+    border-bottom: 1px solid #c3d2db;
+}
+.claim-detail-text>p {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: 400;
+    color: black;
+    font-size: 25px;
+}
+a#back-prev-page {
+    font-size: 13px;
+    display: block;
+    margin-bottom: 25px;
+    cursor: pointer;
+}
+/*claim details form end*/
