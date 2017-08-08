@@ -262,6 +262,7 @@ span.taxonomy-img {
     color: #00693B;
     margin-right: 20px;
     border-bottom: 1px solid #c3d2db;
+    margin-bottom: 25px;
 }
 .claim-detail-text>p {
     margin-top: 10px;
@@ -275,5 +276,35 @@ a#back-prev-page {
     display: block;
     margin-bottom: 25px;
     cursor: pointer;
+}
+#member-info-container, #claim-details-container, #charge-details-container {
+    margin: 0 20px 20px 20px;
+}
+.member-info-header, .claim-details-header, .charge-details-header {
+    background-color: #00693B;
+    color: white;
+    font-size: 15px;
+    font-weight: 100;
+    padding: 10px;
+}
+.member-info-body, .claim-details-body, .charge-details-body {
+    border: 1px #00693B solid;
+    font-size: 15px;
+}
+span.left-claim-details, span.right-claim-details {
+    display: inline-block;
+    width: 45%;
+    padding: 15px;
+}
+label.patient-name-label, label.service-date-label, label.claim-number-label, label.status-label {
+    font-weight: 700;
+}
+.patient-name-value, .service-date-value, .claim-number-value, .status-value {
+    display: inline-block;
+    max-width: 60%;
+}
+#patientName, #serviceDate, #claimNumber, #status{
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 /*claim details form end*/
