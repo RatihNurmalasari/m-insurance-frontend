@@ -5,6 +5,8 @@ WORKDIR /manulife-poc
 
 ADD ./public  /manulife-poc/public
 ADD ./src /manulife-poc/src
+ADD ./config /manulife-poc/config
+ADD ./scripts /manulife-poc/scripts
 ADD ./package.json /manulife-poc/package.json
 
 RUN npm install
