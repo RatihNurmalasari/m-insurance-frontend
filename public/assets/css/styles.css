@@ -301,10 +301,10 @@ span.left-claim-details, span.right-claim-details {
     width: 45%;
     padding: 15px;
 }
-label.patient-name-label, label.service-date-label, label.claim-number-label, label.status-label {
+label.patient-name-label, label.service-date-label, label.claim-number-label, label.status-label, label.patient-amount-billed-label, label.service-amount-paid-coverage-label, label.claim-amount-paid-coverage-to-label {
     font-weight: 700;
 }
-.patient-name-value, .service-date-value, .claim-number-value, .status-value {
+.patient-name-value, .service-date-value, .claim-number-value, .status-value, .patient-amount-billed-value, .service-amount-paid-coverage-label, .claim-amount-paid-coverage-to-label{
     display: inline-block;
     max-width: 60%;
 }

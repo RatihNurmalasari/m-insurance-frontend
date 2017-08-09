@@ -9,7 +9,7 @@ class LoginBox extends Component {
         this.handleSubmit=this.handleSubmit.bind(this);
         this.handleValidation=this.handleValidation.bind(this);
     }
-
+    
     handleSubmit(event){
         event.preventDefault();
 
