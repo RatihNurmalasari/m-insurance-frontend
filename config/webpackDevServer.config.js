@@ -10,7 +10,7 @@ const host = process.env.HOST || '0.0.0.0';
 
 var basicAuth = require('basic-auth');
 process.env.AUTH_USER = 'photon';
-process.env.AUTH_PASSWORD = 'Welcome';
+process.env.AUTH_PASSWORD = 'Welcome123';
 
 module.exports = function(proxy, allowedHost) {
   return {
