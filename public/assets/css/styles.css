@@ -6,9 +6,11 @@ body {
 }
 .login{
     overflow: hidden;
+    height: 100vh;
 }
 .login>img{
     opacity: 0.5;
+    width: 100%;
 }
 
 /*login form start*/
