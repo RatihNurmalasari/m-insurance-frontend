@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
 
 class LoginBox extends Component {
 
@@ -9,6 +10,8 @@ class LoginBox extends Component {
         var emailElm = document.getElementById("email").value;
         var passwordElm = document.getElementById("password").value;
         var username = {email:"michael@mail.com",password:"1234"};
+        console.log($('#email').val());
+        $('#email').addClass('success');
         if(emailElm===username.email && passwordElm===username.password){
             alert("SUCCESS LOGIN");
             window.location.assign('/checkclaim');
