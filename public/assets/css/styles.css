@@ -184,6 +184,12 @@ input#remember-me {
     padding-bottom: 20px;
     width: 100%;
 }
+p.claim-error-text {
+    margin-left: 20px;
+    margin-bottom: 0px;
+    color: red;
+    font-style: italic;
+}
 .login-container>.header>img {
     opacity: 1;
     width: 100%;

@@ -1,5 +1,3 @@
-import React, { Component } from 'react';
-import $ from 'jquery';
 
 export function isEmailValid(email)  {
     var re = /([\S]+)@((?:[\w-]+\.)*\w[\w-]{0,})\.([a-z]{2,}(?:\.[a-z]{2})?)$/g;
@@ -16,3 +14,7 @@ export function isPasswordValid(password) {
     return (re.test(password));
 }
 
+export function isNumber (number){
+    var numberRegex = /^[0-9]+/g;
+    return numberRegex.test(number);
+}

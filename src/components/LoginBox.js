@@ -134,7 +134,7 @@ class LoginBox extends Component {
         } else {
             passwordElm.setAttribute("type","password");
         }
-        if (passwordElm.getAttribute("type") == "text"){
+        if (passwordElm.getAttribute("type") === "text"){
             $(".password-watch").css("background-image","url(../../assets/images/hide.png)");
         } else {
             $(".password-watch").css("background-image","url(../../assets/images/show.png)");
