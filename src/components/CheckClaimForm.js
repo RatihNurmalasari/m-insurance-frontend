@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-import * as Validator from './Validator.js';
+import * as Validator from '../util/Validator.js';
+import * as API from '../util/API.js';
 
 class CheckClaimForm extends Component {
     constructor(props){
@@ -8,7 +9,6 @@ class CheckClaimForm extends Component {
         this.handleSubmit=this.handleSubmit.bind(this);
         this.createDropdown=this.createDropdown.bind(this);
         this.openTaxonomy=this.openTaxonomy.bind(this);
-        this.handleGetData=this.handleGetData.bind(this);
         this.handleValidation=this.handleValidation.bind(this);
         this.validateClaimNumber=this.validateClaimNumber.bind(this);
     }
@@ -31,14 +31,18 @@ class CheckClaimForm extends Component {
         if(isValid){
             $(".loading").css("display","block");
             // setTimeout(function(){ window.location.assign('/claimdetails'); }, 1000);
-            this.handleGetData(parseFloat(claimNumber),function(response){
+            var url = "http://localhost:8080/manulife/claim/" + parseFloat(claimNumber);
+            API.ajaxRequest(url,'get',function(response){
                 //success
                 var responseString = JSON.stringify(response)
                 window.sessionStorage.setItem("dataClaim",responseString)
                 window.location.assign('/claimdetails');
             }, function(error){
                 //error
-                window.location.assign('/claimdetails');
+                $("#taxonomy").addClass("input-error");
+                $("#claim-number").addClass("input-error");
+                $(".claim-error-text").text("Sorry, the information you provided does not match our records. Please contact your Owner Services Team.");
+                $(".loading").css("display","none");
             });
         }
     }
@@ -93,30 +97,6 @@ class CheckClaimForm extends Component {
             errorMsg = isValid ? "" : "Please fill the correct claim number.";
         }
         return {isValid:isValid,errorMsg:errorMsg};
-    }
-
-    handleGetData(claimNumber,successCallback, errorCallback){
-        var url = 'http://manulife-claim-dockermgmt.centralus.cloudapp.azure.com:6060/manulife/claim/' + claimNumber;
-        var options = {
-            url:  url,
-            dataType: 'json',
-            cache: false,
-            beforeSend: function(xhr){xhr.setRequestHeader('clientID', 'menulife');
-                                      xhr.setRequestHeader('tokenID', 'MANULIFEWEBAPP');
-                                      xhr.setRequestHeader('sessionID', 'xsiood34567$232')},
-            success: function(response, textStatus, xhr) {
-                if(successCallback !== null) {
-                    successCallback(response, textStatus);
-                }
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                if(errorCallback){
-                    errorCallback(jqXHR);
-                }
-            }
-        };
-        $.support.cors = true;
-        $.ajax(options);
     }
     
     render() {

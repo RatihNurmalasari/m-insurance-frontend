@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as Validator from './Validator.js';
+import * as Validator from '../util/Validator.js';
 import $ from 'jquery';
 
 class LoginBox extends Component {

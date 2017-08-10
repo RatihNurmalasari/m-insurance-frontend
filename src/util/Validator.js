@@ -1,4 +1,3 @@
-
 export function isEmailValid(email)  {
     var re = /([\S]+)@((?:[\w-]+\.)*\w[\w-]{0,})\.([a-z]{2,}(?:\.[a-z]{2})?)$/g;
     return (re.test(email) && (email.length <= 40));

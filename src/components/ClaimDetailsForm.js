@@ -10,29 +10,7 @@ class ClaimDetailsForm extends Component {
     
     componentDidMount(){
         var dataClaim = window.sessionStorage.getItem('dataClaim');
-        var dataClaimObj = {};
-        if(dataClaim!=null){
-            dataClaimObj = JSON.parse(dataClaim);
-        } else {
-            dataClaimObj = {
-                "claimid": 1608021583,
-                "name": "Alexa Mcintyre",
-                "firstName": "Alexa",
-                "middelName": "",
-                "lastName": "Mcintyre",
-                "dob": "08-28-77",
-                "addressline1": "P.O. Box 260, 8095 Gravida. Avenue",
-                "addressline2": "",
-                "city": "San Antonio",
-                "state": "Texas",
-                "country": "United States",
-                "zipcode": "40870",
-                "phoneNumber": "(877) 729-4633",
-                "emailID": "sollicitudin@elitpede.com",
-                "claimstatus": "In Progress",
-                "sessionID": ""
-            }
-        }
+        var dataClaimObj = JSON.parse(dataClaim);
         this.mappingData(dataClaimObj);
     }
     
