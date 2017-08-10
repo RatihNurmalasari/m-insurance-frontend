@@ -68,6 +68,7 @@ body {
     padding: 9px;
     box-sizing: border-box;
     font-size: 14px;
+    border: 1px solid #c3d2db
 }
 .form button {
     text-transform: uppercase;
@@ -98,7 +99,7 @@ span.password-watch {
     background-repeat: no-repeat
 }
 .input-error{
-    border-color: red;
+    border-color: red!important;
     color: red;
     border: 1px solid;
 }
@@ -231,12 +232,24 @@ input#claim-number {
     width: 65%;
     height: 27px;
     box-sizing: border-box;
+    border: 1px solid #c3d2db;
+    font-size: 14px;
+    padding-left: 5px;
 }
-input#taxonomy {
+div#taxonomy {
     width: 65%;
     height: 27px;
     box-sizing: border-box;
     cursor: pointer;
+    position: relative;
+    display: inline-block;
+    border: 1px solid #c3d2db;
+    font-size: 14px;
+}
+#taxonomy>p{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 5px;
 }
 span.taxonomy-img {
     background-image: url(../images/dropdown.png);
@@ -263,6 +276,33 @@ span.taxonomy-img {
     transition: all 0.3 ease;
     cursor: pointer;
     float: right;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    width: 24.5%;
+    max-height: 100px;
+    overflow: auto;
+}
+.dropdown-content div {
+    color: black;
+    padding: 5px 7px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}
+.dropdown-content div:hover {
+    background-color: #f1f1f1;
+}
+.show {
+    display:block;
+}
+div#taxDrpDown {
+    font-size: 14px;
 }
 /*claim form end*/
 

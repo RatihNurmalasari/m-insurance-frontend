@@ -6,11 +6,25 @@ class CheckClaimForm extends Component {
     constructor(props){
         super(props);
         this.handleSubmit=this.handleSubmit.bind(this);
+        this.createDropdown=this.createDropdown.bind(this);
+        this.openTaxonomy=this.openTaxonomy.bind(this);
         this.handleGetData=this.handleGetData.bind(this);
         this.handleValidation=this.handleValidation.bind(this);
         this.validateClaimNumber=this.validateClaimNumber.bind(this);
     }
-
+    
+    componentDidMount(){
+        //request for taxonomy numbers
+        var taxonomyDummy = [8282474042,8282727332,8282474055,8282432157,8282214785,8283574042];
+        this.createDropdown(taxonomyDummy);
+        //handle click on dropdown
+        $("#taxDrpDown>div").click(function(e){
+            var selectedText = $(this).text()
+            $("#taxonomy>p").text(selectedText);
+            $("#taxDrpDown").toggleClass("show");
+        })
+    }
+    
     handleSubmit(event){
         var claimNumber = $("#claim-number").val();
         var isValid = this.handleValidation(claimNumber);
@@ -29,19 +43,45 @@ class CheckClaimForm extends Component {
         }
     }
     
+    createDropdown(taxonomyDummy){
+         for(var i=0; i<taxonomyDummy.length; i++){
+             $("#taxDrpDown").append("<div>" + "HIPPA CODE - " + taxonomyDummy[i] +"</div>");
+         }
+    }
+    
+    openTaxonomy(){
+        $("#taxDrpDown").toggleClass("show");
+    }
+    
     handleValidation(claimNumber){
         var isValidClaimNumber = this.validateClaimNumber(claimNumber);
-        var allValid = isValidClaimNumber.isValid ? true : false;
-        if (!isValidClaimNumber.isValid){
-            $("input#claim-number").addClass("input-error");
+        var isValidTaxonomy = $("#taxonomy>p").text() !== "" ? true : false;
+        var allValid = isValidClaimNumber.isValid && isValidTaxonomy ? true : false;
+        if (!isValidClaimNumber.isValid && !isValidTaxonomy){
+            $("input#claim-number").addClass("input-error");            
+            if(isValidClaimNumber.errorMsg == "Please fill the correct claim number."){
+                $("#taxonomy").removeClass("input-error");
+            } else {
+                $("#taxonomy").addClass("input-error");
+                $("#claim-number").addClass("input-error");
+            }            
             $(".claim-error-text").text(isValidClaimNumber.errorMsg);
+        } else if (!isValidClaimNumber.isValid && isValidTaxonomy || !isValidClaimNumber.isValid && !isValidTaxonomy) {
+            $("input#claim-number").addClass("input-error");
+            $("#taxonomy").removeClass("input-error");
+            $(".claim-error-text").text(isValidClaimNumber.errorMsg);
+        } else if (!isValidTaxonomy && isValidClaimNumber) {
+            $("input#claim-number").removeClass("input-error");
+            $("#taxonomy").addClass("input-error");
+            $(".claim-error-text").text("Please select the taxonomy code");
         } else {
             $("input#claim-number").removeClass("input-error");
+            $("#taxonomy").removeClass("input-error");
             $(".claim-error-text").text("");
         }
         return allValid;
     }
-    
+
     validateClaimNumber(claimNumber){
         var isValid=true;
         var errorMsg = "";
@@ -78,27 +118,29 @@ class CheckClaimForm extends Component {
         $.support.cors = true;
         $.ajax(options);
     }
-
+    
     render() {
         return (
             <div className="check-claim">
             <div className="claimText">
             <p>Fill in information</p>
-            
+
             </div>
             <p className="claim-error-text"></p>
             <form className="claim-form">
             <span className="claim-number">
             <p>ClaimNumber*</p>
-            
+
             <input type="text" id="claim-number"/>
             </span>
             <span className="taxonomy">
             <p>Taxonomy*</p>
-            
+
             <div className="taxonomy-container">
-            <input type="text" id="taxonomy"/>
+            <div type="text" id="taxonomy" onClick={this.openTaxonomy}><p></p></div>
             <span className="taxonomy-img"></span>
+                <div id="taxDrpDown" className="dropdown-content">
+                </div>
             </div>
             </span>
             </form>

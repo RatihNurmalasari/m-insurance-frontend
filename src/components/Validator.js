@@ -15,6 +15,6 @@ export function isPasswordValid(password) {
 }
 
 export function isNumber (number){
-    var numberRegex = /^[0-9]+/g;
+    var numberRegex = /^[0-9]+$/g;
     return numberRegex.test(number);
 }
