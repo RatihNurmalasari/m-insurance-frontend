@@ -12,7 +12,6 @@ class LoginBox extends Component {
     
     handleSubmit(event){
         event.preventDefault();
-
         var emailElm = $("#email").val();
         var passwordElm = $("#password").val();
         var username = [
@@ -34,38 +33,37 @@ class LoginBox extends Component {
         var allValid = isValidEmail.isValid && isValidPassword.isValid ? true : false;
         if (!isValidEmail.isValid){
             $("input#email").addClass("input-error");
-            $(".email-error").text(isValidEmail.errorMsg);
+            $(".loginbox-error").text(isValidEmail.errorMsg);
         } else {
             $("input#email").removeClass("input-error");
-            $(".email-error").text("");
+            $(".loginbox-error").text("");
         }
         if (!isValidPassword.isValid){
             $("input#password").addClass("input-error");
-            $(".password-error").text(isValidPassword.errorMsg);
+            $(".loginbox-error").text(isValidPassword.errorMsg);
             $(".password-watch").css("background-image","url(../../assets/images/show_error.png)");
         } else {
             $("input#password").removeClass("input-error");
-            $(".password-error").text("");
             $(".password-watch").css("background-image","url(../../assets/images/show.png)");
         }
         if (allValid){
             var checkUserObj = this.checkUser(email,password,username);
             if(!checkUserObj.isValid){
                 $("input#email").addClass("input-error");
-                $(".email-error").text(checkUserObj.errorMsg);
+                $(".loginbox-error").text(checkUserObj.errorMsg);
                 allValid = false;
             } else {
                 $("input#email").removeClass("input-error");
-                $(".email-error").text("");
+                $(".loginbox-error").text("");
                 var checkUserPass = this.checkPassword(email,checkUserObj.password,username);
                 if (!checkUserPass.isValid){
                     $("input#password").addClass("input-error");
-                    $(".password-error").text(checkUserPass.errorMsg);
+                    $(".loginbox-error").text(checkUserPass.errorMsg);
                     $(".password-watch").css("background-image","url(../../assets/images/show_error.png)");
                     allValid = false;
                 } else {
                     $("input#password").removeClass("input-error");
-                    $(".password-error").text("");
+                    $(".loginbox-error").text("");
                     $(".password-watch").css("background-image","url(../../assets/images/show.png)");
                 }
             }
@@ -78,7 +76,7 @@ class LoginBox extends Component {
         var errorMsg = "";
         if(email === ""){
             isValid = false;
-            errorMsg = "Please enter your email address";
+            errorMsg = "Please enter your email address and your password.";
         }else {
             isValid = Validator.isEmailValid(email);
             errorMsg = isValid ? "" : "Please re-enter your email address. Remember, the valid format is “email@domain.com”";
@@ -91,10 +89,7 @@ class LoginBox extends Component {
         var errorMsg = "";
         if(password === ""){
             isValid = false;
-            errorMsg = "Please enter your email password";
-        }else {
-            isValid = Validator.isPasswordValid(password);
-            errorMsg = isValid ? "" : "Please re-enter your password";
+            errorMsg = "Please enter your email address and your password.";
         }
         return {isValid:isValid,errorMsg:errorMsg};
     }
@@ -113,12 +108,24 @@ class LoginBox extends Component {
     }
 
     checkPassword(email,password,username){
+        var logintAttempt = window.sessionStorage.getItem('logintAttempt');
+        if(logintAttempt==null){
+            window.sessionStorage.setItem('logintAttempt','0');
+        }
         var isValid=false;
-        var errorMsg = "Incorrect password or username";
+        var errorMsg = "";
         for(var i=0; i<username.length; i++){
             if(email === username[i].email && password === username[i].password){
                 isValid = true;
                 errorMsg = "";
+                break;
+            } else if (email === username[i].email && password !== username[i].password) {
+                logintAttempt = JSON.parse(window.sessionStorage.getItem('logintAttempt'));
+                var attempt = parseInt(logintAttempt);
+                attempt = attempt + 1;
+                isValid = false;
+                errorMsg = attempt < 3 ? "Sorry, but we didn't recognize that username & password combination. You have " + (3 - attempt) + " attempts left or please call customer support Team." : "Your security is of utmost importance to us. You've exceeded your permitted number of attempts and your account has been locked. Please call the customer support team to unlock."
+                window.sessionStorage.setItem('logintAttempt',attempt);
                 break;
             }
         }
@@ -144,24 +151,23 @@ class LoginBox extends Component {
     render() {
         return (
             <div className="login">
-            <img src="assets/images/manulife-background.png"></img>
+            <img src="assets/images/manulife-background.png" alt="manulife-background"></img>
             <div className="login-page">
             <div className="loginHeader">Welcome!</div>
             <div className="form">
             <form className="login-form" >
             <p>Sign in to your account.</p>
+            <p className="loginbox-error"></p>
             <p>Email Address*</p>
-            <p className="email-error"></p>
             <input type="text" id="email"/>
             <p>Password*</p>
-            <p className="password-error"></p>
             <div className="password-container">
-            <input type="password" id="password"/>
+            <input type="password" id="password" maxLength="50"/>
             <span className="password-watch" onMouseUp={this.handleWatch} onMouseDown={this.handleWatch}></span>
             </div>
             <input id="remember-me" name="rememberme" type="checkbox"></input>
             <p>Remember me</p>
-            <button type="button" onClick={this.handleSubmit}><img src="assets/images/lock.png"/>SIGN IN</button>
+            <button type="button" onClick={this.handleSubmit}><img src="assets/images/lock.png" alt="lock"/>SIGN IN</button>
             <div className="forgotSection"><span><a id="forgotUsername">Forgot Password? </a></span>
             <span><a id="signUp">Create Account</a></span>
             </div>

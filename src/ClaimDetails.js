@@ -6,7 +6,7 @@ class CheckClaim extends Component {
     return (
         <div className="claim-detail-container">
             <div className="header">
-                <img src="assets/images/Header - User logged in.png"></img>
+                <img src="assets/images/Header - User logged in.png" alt="Header - User logged in"></img>
             </div>
             <ClaimDetailsForm/>
             

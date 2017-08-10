@@ -34,7 +34,7 @@ body {
     width: 10px;
     margin-right: 8px;
 }
-.login-form>p:nth-child(2), .login-form>p:nth-child(5){
+.login-form>p:nth-child(3), .login-form>p:nth-child(5){
     font-weight: 400
 }
 
@@ -83,7 +83,7 @@ body {
     cursor: pointer;
 }
 
-.email-error, .password-error, .claim-number-error, .taxonomy-error {
+.loginbox-error, .claim-number-error, .taxonomy-error {
     color: red;
     font-style: italic;
 }
