@@ -17,7 +17,8 @@ class LoginBox extends Component {
         var username = [
             {email:"michael@mail.com",password:"Welcome123"},
             {email:"clara@mail.com",password:"Welcome123"},
-            {email:"john@mail.com",password:"Welcome123"}
+            {email:"john@mail.com",password:"Welcome123"},
+            {email:"Alexa.sawyer@abc.com",password:"ABC123abc"}
         ];
         var isValid = this.handleValidation(emailElm,passwordElm,username);
         if(isValid){
@@ -47,7 +48,7 @@ class LoginBox extends Component {
             $(".password-watch").css("background-image","url(../../assets/images/show.png)");
         }
         if (allValid){
-            var checkUserObj = this.checkUser(email,password,username);
+            var checkUserObj = this.checkUser(email.toLowerCase(),password,username);
             if(!checkUserObj.isValid){
                 $("input#email").addClass("input-error");
                 $(".loginbox-error").text(checkUserObj.errorMsg);
@@ -55,7 +56,7 @@ class LoginBox extends Component {
             } else {
                 $("input#email").removeClass("input-error");
                 $(".loginbox-error").text("");
-                var checkUserPass = this.checkPassword(email,checkUserObj.password,username);
+                var checkUserPass = this.checkPassword(email.toLowerCase(),checkUserObj.password,username);
                 if (!checkUserPass.isValid){
                     $("input#password").addClass("input-error");
                     $(".loginbox-error").text(checkUserPass.errorMsg);
@@ -98,7 +99,7 @@ class LoginBox extends Component {
         var isValid=false;
         var errorMsg = "This Email address is not registered.";
         for(var i=0; i<username.length; i++){
-            if(email === username[i].email){
+            if(email === username[i].email.toLowerCase()){
                 isValid = true;
                 errorMsg = "";
                 break;
@@ -115,13 +116,13 @@ class LoginBox extends Component {
         var isValid=false;
         var errorMsg = "";
         for(var i=0; i<username.length; i++){
-            if(email === username[i].email && password === username[i].password){
+            if(email === username[i].email.toLowerCase() && password === username[i].password){
                 isValid = true;
                 errorMsg = "";
                 break;
             } else if (email === username[i].email && password !== username[i].password) {
                 logintAttempt = JSON.parse(window.sessionStorage.getItem('logintAttempt'));
-                var attempt = parseInt(logintAttempt);
+                var attempt = parseInt(logintAttempt,10);
                 attempt = attempt + 1;
                 isValid = false;
                 errorMsg = attempt < 3 ? "Sorry, but we didn't recognize that username & password combination. You have " + (3 - attempt) + " attempts left or please call customer support Team." : "Your security is of utmost importance to us. You've exceeded your permitted number of attempts and your account has been locked. Please call the customer support team to unlock."

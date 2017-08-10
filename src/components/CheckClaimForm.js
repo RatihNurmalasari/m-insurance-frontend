@@ -49,7 +49,7 @@ class CheckClaimForm extends Component {
     
     createDropdown(taxonomyDummy){
          for(var i=0; i<taxonomyDummy.length; i++){
-             $("#taxDrpDown").append("<div>" + "HIPPA CODE - " + taxonomyDummy[i] +"</div>");
+             $("#taxDrpDown").append("<div>HIPPA CODE - " + taxonomyDummy[i] +"</div>");
          }
     }
     
@@ -63,7 +63,7 @@ class CheckClaimForm extends Component {
         var allValid = isValidClaimNumber.isValid && isValidTaxonomy ? true : false;
         if (!isValidClaimNumber.isValid && !isValidTaxonomy){
             $("input#claim-number").addClass("input-error");            
-            if(isValidClaimNumber.errorMsg == "Please fill the correct claim number."){
+            if(isValidClaimNumber.errorMsg === "Please fill the correct claim number."){
                 $("#taxonomy").removeClass("input-error");
             } else {
                 $("#taxonomy").addClass("input-error");
