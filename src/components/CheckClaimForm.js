@@ -12,21 +12,20 @@ class CheckClaimForm extends Component {
     }
 
     handleSubmit(event){
-        /*
-        this.handleGetData(parseFloat(claimNumber),function(response){
-            //success
-            var responseString = JSON.stringify(response)
-            window.sessionStorage.setItem("dataClaim",responseString)
-            window.location.assign('/claimdetails');
-        }, function(error){
-            //error
-            window.location.assign('/claimdetails');
-        });*/
         var claimNumber = $("#claim-number").val();
         var isValid = this.handleValidation(claimNumber);
         if(isValid){
             $(".loading").css("display","block");
-            setTimeout(function(){ window.location.assign('/claimdetails'); }, 1000);
+            // setTimeout(function(){ window.location.assign('/claimdetails'); }, 1000);
+            this.handleGetData(parseFloat(claimNumber),function(response){
+                //success
+                var responseString = JSON.stringify(response)
+                window.sessionStorage.setItem("dataClaim",responseString)
+                window.location.assign('/claimdetails');
+            }, function(error){
+                //error
+                window.location.assign('/claimdetails');
+            });
         }
     }
     
@@ -57,7 +56,8 @@ class CheckClaimForm extends Component {
     }
 
     handleGetData(claimNumber,successCallback, errorCallback){
-        var url = 'http://manulife-claim-dockermgmt.centralus.cloudapp.azure.com:6060/manulife/claim/' + claimNumber;
+        // var url = 'http://manulife-claim-dockermgmt.centralus.cloudapp.azure.com:6060/manulife/claim/' + claimNumber;
+        var url = 'http://localhost:8080/manulife/claim/' + claimNumber;
         var options = {
             url:  url,
             dataType: 'json',
