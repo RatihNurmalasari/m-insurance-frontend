@@ -18,7 +18,7 @@ class LoginBox extends Component {
             {email:"michael@mail.com",password:"Welcome123"},
             {email:"clara@mail.com",password:"Welcome123"},
             {email:"john@mail.com",password:"Welcome123"},
-            {email:"Alexa.sawyer@abc.com",password:"ABC123abc"}
+            {email:"alexa.sawyer@gmail.com",password:"ABC123abc"}
         ];
         var isValid = this.handleValidation(emailElm,passwordElm,username);
         if(isValid){
@@ -120,7 +120,7 @@ class LoginBox extends Component {
                 isValid = true;
                 errorMsg = "";
                 break;
-            } else if (email === username[i].email && password !== username[i].password) {
+            } else if (email === username[i].email.toLowerCase() && password !== username[i].password) {
                 logintAttempt = JSON.parse(window.sessionStorage.getItem('logintAttempt'));
                 var attempt = parseInt(logintAttempt,10);
                 attempt = attempt + 1;
