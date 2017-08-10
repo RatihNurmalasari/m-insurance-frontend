@@ -88,8 +88,8 @@ class CheckClaimForm extends Component {
         if(claimNumber === ""){
             isValid = false;
             errorMsg = "Please fill the mandatory fields.";
-        }else {
-            isValid = Validator.isNumber(claimNumber);
+        } else {
+            isValid = Validator.isNumber(claimNumber) && (claimNumber.length >=10) && (claimNumber.length <= 16);
             errorMsg = isValid ? "" : "Please fill the correct claim number.";
         }
         return {isValid:isValid,errorMsg:errorMsg};
