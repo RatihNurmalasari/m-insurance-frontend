@@ -56,8 +56,7 @@ class CheckClaimForm extends Component {
     }
 
     handleGetData(claimNumber,successCallback, errorCallback){
-        // var url = 'http://manulife-claim-dockermgmt.centralus.cloudapp.azure.com:6060/manulife/claim/' + claimNumber;
-        var url = 'http://localhost:8080/manulife/claim/' + claimNumber;
+        var url = 'http://manulife-claim-dockermgmt.centralus.cloudapp.azure.com:6060/manulife/claim/' + claimNumber;
         var options = {
             url:  url,
             dataType: 'json',
