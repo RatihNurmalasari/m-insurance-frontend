@@ -1,34 +1,49 @@
 import React, { Component } from 'react';
 import * as Validator from '../util/Validator.js';
 import $ from 'jquery';
+import * as API from '../util/API.js';
 
 class LoginBox extends Component {
 
     constructor(props){
         super(props);
         this.handleSubmit=this.handleSubmit.bind(this);
-        this.handleValidation=this.handleValidation.bind(this);
     }
-    
+
     handleSubmit(event){
         event.preventDefault();
         var emailElm = $("#email").val();
         var passwordElm = $("#password").val();
-        var username = [
-            {email:"michael@mail.com",password:"Welcome123"},
-            {email:"clara@mail.com",password:"Welcome123"},
-            {email:"john@mail.com",password:"Welcome123"},
-            {email:"alexa.sawyer@gmail.com",password:"ABC123abc"}
-        ];
-        var isValid = this.handleValidation(emailElm,passwordElm,username);
+        var isValid = this.handleValidation(emailElm,passwordElm);
         if(isValid){
             $(".loading").css("display","block");
-            setTimeout(function(){ window.location.assign('/checkclaim'); }, 1000);
-            
+
+            var url = "http://manulife-claim-dockermgmt.centralus.cloudapp.azure.com:6060/user/login";
+            var postBody = {
+                email:emailElm,
+                password:passwordElm
+            };
+            API.ajaxRequest(url,postBody,'POST',function(response){
+                //success
+                var responseString = JSON.stringify(response)
+                window.sessionStorage.setItem("dataProfile",responseString)
+                $("input#email").removeClass("input-error");
+                $("input#password").removeClass("input-error");
+                $(".password-watch").css("background-image","url(../../assets/images/show.png)");
+                $(".loginbox-error").text("");
+                window.location.assign('/checkclaim');
+            }, function(error){
+                //error
+                $("input#password").addClass("input-error");
+                $("input#email").addClass("input-error");
+                $(".loginbox-error").text(error.responseJSON.errorMessage);
+                $(".password-watch").css("background-image","url(../../assets/images/show_error.png)");
+                $(".loading").css("display","none");
+            });
         }
     }
 
-    handleValidation(email,password,username){
+    handleValidation(email,password){
         var isValidEmail = this.validateEmail(email);
         var isValidPassword = this.validatePassword(password);
         var allValid = isValidEmail.isValid && isValidPassword.isValid ? true : false;
@@ -46,28 +61,6 @@ class LoginBox extends Component {
         } else {
             $("input#password").removeClass("input-error");
             $(".password-watch").css("background-image","url(../../assets/images/show.png)");
-        }
-        if (allValid){
-            var checkUserObj = this.checkUser(email.toLowerCase(),password,username);
-            if(!checkUserObj.isValid){
-                $("input#email").addClass("input-error");
-                $(".loginbox-error").text(checkUserObj.errorMsg);
-                allValid = false;
-            } else {
-                $("input#email").removeClass("input-error");
-                $(".loginbox-error").text("");
-                var checkUserPass = this.checkPassword(email.toLowerCase(),checkUserObj.password,username);
-                if (!checkUserPass.isValid){
-                    $("input#password").addClass("input-error");
-                    $(".loginbox-error").text(checkUserPass.errorMsg);
-                    $(".password-watch").css("background-image","url(../../assets/images/show_error.png)");
-                    allValid = false;
-                } else {
-                    $("input#password").removeClass("input-error");
-                    $(".loginbox-error").text("");
-                    $(".password-watch").css("background-image","url(../../assets/images/show.png)");
-                }
-            }
         }
         return allValid;
     }
@@ -91,44 +84,6 @@ class LoginBox extends Component {
         if(password === ""){
             isValid = false;
             errorMsg = "Please enter your email address and your password.";
-        }
-        return {isValid:isValid,errorMsg:errorMsg};
-    }
-
-    checkUser(email,password,username){
-        var isValid=false;
-        var errorMsg = "This Email address is not registered.";
-        for(var i=0; i<username.length; i++){
-            if(email === username[i].email.toLowerCase()){
-                isValid = true;
-                errorMsg = "";
-                break;
-            }
-        }
-        return {isValid:isValid,errorMsg:errorMsg,password:password};
-    }
-
-    checkPassword(email,password,username){
-        var logintAttempt = window.sessionStorage.getItem('logintAttempt');
-        if(logintAttempt==null){
-            window.sessionStorage.setItem('logintAttempt','0');
-        }
-        var isValid=false;
-        var errorMsg = "";
-        for(var i=0; i<username.length; i++){
-            if(email === username[i].email.toLowerCase() && password === username[i].password){
-                isValid = true;
-                errorMsg = "";
-                break;
-            } else if (email === username[i].email.toLowerCase() && password !== username[i].password) {
-                logintAttempt = JSON.parse(window.sessionStorage.getItem('logintAttempt'));
-                var attempt = parseInt(logintAttempt,10);
-                attempt = attempt + 1;
-                isValid = false;
-                errorMsg = attempt < 3 ? "Sorry, but we didn't recognize that username & password combination. You have " + (3 - attempt) + " attempts left or please call customer support Team." : "Your security is of utmost importance to us. You've exceeded your permitted number of attempts and your account has been locked. Please call the customer support team to unlock."
-                window.sessionStorage.setItem('logintAttempt',attempt);
-                break;
-            }
         }
         return {isValid:isValid,errorMsg:errorMsg};
     }

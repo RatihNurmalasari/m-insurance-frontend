@@ -15,7 +15,7 @@ class CheckClaimForm extends Component {
     
     componentDidMount(){
         //request for taxonomy numbers
-        var taxonomyDummy = [8282474042,8282727332,8282474055,8282432157,8282214785,8283574042];
+        var taxonomyDummy = [8282474042,8282727332];
         this.createDropdown(taxonomyDummy);
         //handle click on dropdown
         $("#taxDrpDown>div").click(function(e){
@@ -32,7 +32,8 @@ class CheckClaimForm extends Component {
             $(".loading").css("display","block");
             // setTimeout(function(){ window.location.assign('/claimdetails'); }, 1000);
             var url = "http://manulife-claim-dockermgmt.centralus.cloudapp.azure.com:6060/manulife/claim/" + parseFloat(claimNumber);
-            API.ajaxRequest(url,'get',function(response){
+            var postBody = '';
+            API.ajaxRequest(url,postBody,'GET',function(response){
                 //success
                 var responseString = JSON.stringify(response)
                 window.sessionStorage.setItem("dataClaim",responseString)
@@ -111,13 +112,13 @@ class CheckClaimForm extends Component {
             <span className="claim-number">
             <p>ClaimNumber*</p>
 
-            <input type="text" id="claim-number"/>
+            <input type="text" id="claim-number" placeholder="Please Enter"/>
             </span>
             <span className="taxonomy">
             <p>Taxonomy*</p>
 
             <div className="taxonomy-container">
-            <div type="text" id="taxonomy" onClick={this.openTaxonomy}><p></p></div>
+            <div type="text" id="taxonomy" onClick={this.openTaxonomy}><p>Please Select</p></div>
             <span className="taxonomy-img"></span>
                 <div id="taxDrpDown" className="dropdown-content">
                 </div>

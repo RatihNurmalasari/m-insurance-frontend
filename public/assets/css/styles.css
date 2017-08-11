@@ -347,15 +347,19 @@ span.left-claim-details, span.right-claim-details {
     display: inline-block;
     width: 45%;
     padding: 15px;
+    vertical-align: top;
 }
-label.patient-name-label, label.service-date-label, label.claim-number-label, label.status-label, label.patient-amount-billed-label, label.service-amount-paid-coverage-label, label.claim-amount-paid-coverage-to-label {
+label.patient-name-label, label.service-date-label, label.claim-number-label, label.status-label, label.patient-amount-billed-label, label.service-amount-paid-coverage-label, label.claim-amount-paid-coverage-to-label, label.address-label, label.claim-address-label {
     font-weight: 700;
 }
-.patient-name-value, .service-date-value, .claim-number-value, .status-value, .patient-amount-billed-value, .service-amount-paid-coverage-label, .claim-amount-paid-coverage-to-label{
+.patient-name-value, .service-date-value, .claim-number-value, .status-value, .patient-amount-billed-value, .service-amount-paid-coverage-label, .claim-amount-paid-coverage-to-label, .address-value, .city-value, .country-value, .claim-amount-paid-coverage-to-value, .service-amount-paid-coverage-value, .claim-address-value, .claim-city-value, .claim-country-value{
     display: inline-block;
     max-width: 60%;
 }
-#patientName, #serviceDate, #claimNumber, #status{
+.city-value, .country-value, .claim-city-value, .claim-country-value{
+    margin-left: 69px;
+}
+#patientName, #serviceDate, #claimNumber, #status, #patientAmountBilled, #serviceAmountPaid, #claimAmountPaid, #claimAddress{
     margin-top: 10px;
     margin-bottom: 10px;
 }
