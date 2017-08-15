@@ -12,11 +12,18 @@ body {
     opacity: 0.5;
     width: 100%;
 }
+.main-background{
+    max-height: 600px;
+    overflow: hidden;
+    width: 100%;
+}
+.main-background>img{
+    opacity: 0.5;
+    width: 100%;
+}
 
 /*login form start*/
-.login-container>div>img{
-    opacity: 0.5;
-}
+
 .login-page {
     width: 360px;
     padding: 101px 0 0;

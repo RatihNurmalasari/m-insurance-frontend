@@ -107,7 +107,6 @@ class LoginBox extends Component {
     render() {
         return (
             <div className="login">
-            <img src="assets/images/manulife-background.png" alt="manulife-background"></img>
             <div className="login-page">
             <div className="loginHeader">Welcome!</div>
             <div className="form">
