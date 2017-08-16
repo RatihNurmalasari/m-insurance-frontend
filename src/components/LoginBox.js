@@ -18,7 +18,7 @@ class LoginBox extends Component {
         if(isValid){
             $(".loading").css("display","block");
 
-            var url = "http://manulife-claim-dockermgmt.centralus.cloudapp.azure.com:6060/user/login";
+            var url = "https://manulife-claim-dockermgmt.centralus.cloudapp.azure.com:6060/user/login";
             var postBody = {
                 email:emailElm,
                 password:passwordElm
