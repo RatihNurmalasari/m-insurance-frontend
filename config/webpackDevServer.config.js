@@ -8,6 +8,7 @@ const paths = require('./paths');
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const host = process.env.HOST || '0.0.0.0';
 
+var fs = require('fs');
 var basicAuth = require('basic-auth');
 process.env.AUTH_USER = 'photon';
 process.env.AUTH_PASSWORD = 'Welcome123';
@@ -73,6 +74,10 @@ module.exports = function(proxy, allowedHost) {
     },
     // Enable HTTPS if the HTTPS environment variable is set to 'true'
     https: protocol === 'https',
+    // {
+    //  key: fs.readFileSync('./config/ssl/server.key'),
+    //  cert: fs.readFileSync('./config/ssl/server.crt')
+    // },
     host: host,
     overlay: false,
     historyApiFallback: {
