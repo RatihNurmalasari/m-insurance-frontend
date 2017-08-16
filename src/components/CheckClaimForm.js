@@ -59,7 +59,7 @@ class CheckClaimForm extends Component {
     
     handleValidation(claimNumber){
         var isValidClaimNumber = this.validateClaimNumber(claimNumber);
-        var isValidTaxonomy = $("#taxonomy>p").text() !== "" ? true : false;
+        var isValidTaxonomy = $("#taxonomy>p").text() !== "Please Select" ? true : false;
         var allValid = isValidClaimNumber.isValid && isValidTaxonomy ? true : false;
         if (!isValidClaimNumber.isValid && !isValidTaxonomy){
             $("input#claim-number").addClass("input-error");            
