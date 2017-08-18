@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import LoginBox from './components/LoginBox.js';
 
-class App extends Component {
+class Login extends Component {
   render() {
     return (
         <div className="main-background">
@@ -14,4 +14,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Login;
