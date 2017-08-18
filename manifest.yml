@@ -1,0 +1,8 @@
+---
+applications:
+- name: manulife
+  instances: 1
+  random-route: true
+  command: npm start
+  buildpack: https://github.com/cloudfoundry/nodejs-buildpack
+  port: 8081
