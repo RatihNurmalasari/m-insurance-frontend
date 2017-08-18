@@ -70,18 +70,18 @@ class CheckClaimForm extends Component {
                 $("#claim-number").addClass("input-error");
             }            
             $(".claim-error-text").text(isValidClaimNumber.errorMsg);
-        } else if (!isValidClaimNumber.isValid && isValidTaxonomy || !isValidClaimNumber.isValid && !isValidTaxonomy) {
-            $("input#claim-number").addClass("input-error");
-            $("#taxonomy").removeClass("input-error");
-            $(".claim-error-text").text(isValidClaimNumber.errorMsg);
         } else if (!isValidTaxonomy && isValidClaimNumber) {
             $("input#claim-number").removeClass("input-error");
             $("#taxonomy").addClass("input-error");
             $(".claim-error-text").text("Please select the taxonomy code");
-        } else {
+        } else if (isValidClaimNumber.isValid && isValidTaxonomy){
             $("input#claim-number").removeClass("input-error");
             $("#taxonomy").removeClass("input-error");
             $(".claim-error-text").text("");
+        } else {
+            $("input#claim-number").addClass("input-error");
+            $("#taxonomy").removeClass("input-error");
+            $(".claim-error-text").text(isValidClaimNumber.errorMsg);
         }
         return allValid;
     }
