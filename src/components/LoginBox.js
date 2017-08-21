@@ -18,7 +18,7 @@ class LoginBox extends Component {
         if(isValid){
             $(".loading").css("display","block");
 
-            var url = "http://manulife-service.cfapps.io/user/login";
+            var url = "http://manulife-claim-dockermgmt.centralus.cloudapp.azure.com:6060/user/login";
             var postBody = {
                 email:emailElm,
                 password:passwordElm
@@ -36,7 +36,7 @@ class LoginBox extends Component {
                 //error
                 $("input#password").addClass("input-error");
                 $("input#email").addClass("input-error");
-                $(".loginbox-error").text(error.statusText);
+                $(".loginbox-error").text(error.responseJSON.errorMessage);
                 $(".password-watch").css("background-image","url(../../assets/images/show_error.png)");
                 $(".loading").css("display","none");
             });
