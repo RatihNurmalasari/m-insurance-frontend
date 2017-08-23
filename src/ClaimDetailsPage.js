@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import ClaimDetailsForm from './components/ClaimDetailsForm.js';
+import ClaimDetails from './components/ClaimDetails.js';
 
 /**
  * Class representing Claim Detail Page
  * @extends Component
  */
-class ClaimDetails extends Component {
+class ClaimDetailsPage extends Component {
 /**
  * Render is a function to return html tags to be rendered
  * @returns {html} Html tags to be rendered 
@@ -16,11 +16,10 @@ class ClaimDetails extends Component {
             <div className="header">
                 <img src="assets/images/Header - User logged in.png" alt="Header - User logged in"></img>
             </div>
-            <ClaimDetailsForm/>
-            
+            <ClaimDetails/>
         </div>
     );
   }
 }
 
-export default ClaimDetails;
+export default ClaimDetailsPage;

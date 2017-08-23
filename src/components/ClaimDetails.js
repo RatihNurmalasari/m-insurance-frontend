@@ -5,7 +5,7 @@ import $ from 'jquery';
  * Class representing Claim Details Form.
  * @extends Component
  */
-class ClaimDetailsForm extends Component {
+class ClaimDetails extends Component {
     /**
     * Create ClaimDetailsForm
     * @param {object} props object that will construct ClaimDetailsForm including the functions in it
@@ -143,4 +143,4 @@ class ClaimDetailsForm extends Component {
     }
 }
 
-export default ClaimDetailsForm;
+export default ClaimDetails;

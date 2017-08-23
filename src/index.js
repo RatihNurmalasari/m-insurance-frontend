@@ -5,8 +5,8 @@ import registerServiceWorker from './registerServiceWorker';
 
 // Import the components
 import Login from './Login';
-import CheckClaim from './CheckClaim';
-import ClaimDetails from './ClaimDetails';
+import CheckClaimPage from './CheckClaimPage';
+import ClaimDetailsPage from './ClaimDetailsPage';
 
 const Nav = () => {
   return (
@@ -14,8 +14,8 @@ const Nav = () => {
       	<Router>
       		<div>
 		        <Route path="/" exact component={Login}/>
-		        <Route path="/checkclaim" exact component={CheckClaim}/>
-	            <Route path="/claimdetails" exact component={ClaimDetails}/>
+		        <Route path="/checkclaim" exact component={CheckClaimPage}/>
+	            <Route path="/claimdetails" exact component={ClaimDetailsPage}/>
 	    	</div>
       	</Router>
     </div>

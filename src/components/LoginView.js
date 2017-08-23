@@ -8,21 +8,21 @@ import * as API from '../util/API.js';
  * @extends Component
  */
 
-class LoginBox extends Component {
+class LoginView extends Component {
     /**
     * Create LoginBox
     * @param {object} props object that will construct LoginBox including the functions in it
     */
     constructor(props){
         super(props);
-        this.handleSubmit=this.handleSubmit.bind(this);
+        this.onSignInClicked=this.onSignInClicked.bind(this);
     }
     
     /**
-    * Handle submit event
+    * Handle sign in event event
     * @param {object} event contains native functions to be used on widget
     */
-    handleSubmit(event){
+    onSignInClicked(event){
         event.preventDefault();
         var emailElm = $("#email").val();
         var passwordElm = $("#password").val();
@@ -119,7 +119,7 @@ class LoginBox extends Component {
     * Handle watch password event
     * @param {object} event contains native functions to be used on widget
     */
-    handleWatch(event){
+    onWatchPasswordClicked(event){
         event.preventDefault();
         var currAttr = document.getElementById("password").getAttribute("type");
         var passwordElm = document.getElementById("password");
@@ -133,6 +133,30 @@ class LoginBox extends Component {
         } else {
             $(".password-watch").css("background-image","url(../../assets/images/show.png)");
         }
+    }
+    
+    /**
+    * Handle state of remember me
+    * @param {object} event contains native functions to be used on widget
+    */
+    onRememberMeChecked(event){
+        
+    }
+    
+    /**
+    * Link to redirected to forgot password page
+    * @param {object} event contains native functions to be used on widget
+    */
+    onForgotPasswordClicked(event){
+        
+    }
+    
+    /**
+    * Link to redirected to forgot create account
+    * @param {object} event contains native functions to be used on widget
+    */
+    onCreateAccountClicked(event){
+        
     }
     
     /**
@@ -153,11 +177,11 @@ class LoginBox extends Component {
             <p>Password*</p>
             <div className="password-container">
             <input type="password" id="password" maxLength="50"/>
-            <span className="password-watch" onMouseUp={this.handleWatch} onMouseDown={this.handleWatch}></span>
+            <span className="password-watch" onMouseUp={this.onWatchPasswordClicked} onMouseDown={this.onWatchPasswordClicked}></span>
             </div>
             <input id="remember-me" name="rememberme" type="checkbox"></input>
             <p>Remember me</p>
-            <button type="button" onClick={this.handleSubmit}><img src="assets/images/lock.png" alt="lock"/>SIGN IN</button>
+            <button type="button" onClick={this.onSignInClicked}><img src="assets/images/lock.png" alt="lock"/>SIGN IN</button>
             <div className="forgotSection"><span><a id="forgotUsername">Forgot Password? </a></span>
             <span><a id="signUp">Create Account</a></span>
             </div>
@@ -170,4 +194,4 @@ class LoginBox extends Component {
     }
 }
 
-export default LoginBox;
+export default LoginView;

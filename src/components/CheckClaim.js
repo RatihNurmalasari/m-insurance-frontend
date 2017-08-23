@@ -7,16 +7,16 @@ import * as API from '../util/API.js';
  * Class representing Check Claim Form.
  * @extends Component
  */
-class CheckClaimForm extends Component {
+class CheckClaim extends Component {
     /**
     * Create CheckClaimForm
     * @param {object} props object that will construct CheckClaimForm including the functions in it
     */
     constructor(props){
         super(props);
-        this.handleSubmit=this.handleSubmit.bind(this);
+        this.onSubmitClicked=this.onSubmitClicked.bind(this);
         this.createDropdown=this.createDropdown.bind(this);
-        this.openTaxonomy=this.openTaxonomy.bind(this);
+        this.onTaxonomyDropdownClicked=this.onTaxonomyDropdownClicked.bind(this);
         this.handleValidation=this.handleValidation.bind(this);
         this.validateClaimNumber=this.validateClaimNumber.bind(this);
     }
@@ -41,7 +41,7 @@ class CheckClaimForm extends Component {
     * Handle submit event
     * @param {object} event contains native functions to be used on widget
     */
-    handleSubmit(event){
+    onSubmitClicked(event){
         var claimNumber = $("#claim-number").val();
         var isValid = this.handleValidation(claimNumber);
         if(isValid){
@@ -74,9 +74,9 @@ class CheckClaimForm extends Component {
     }
     
     /**
-    * Open taaxonomy dropdown
+    * Open taxonomy dropdown
     */
-    openTaxonomy(){
+    onTaxonomyDropdownClicked(){
         $("#taxDrpDown").toggleClass("show");
     }
     
@@ -152,7 +152,7 @@ class CheckClaimForm extends Component {
             <p>Taxonomy*</p>
 
             <div className="taxonomy-container">
-            <div type="text" id="taxonomy" onClick={this.openTaxonomy}><p>Please Select</p></div>
+            <div type="text" id="taxonomy" onClick={this.onTaxonomyDropdownClicked}><p>Please Select</p></div>
             <span className="taxonomy-img"></span>
                 <div id="taxDrpDown" className="dropdown-content">
                 </div>
@@ -160,7 +160,7 @@ class CheckClaimForm extends Component {
             </span>
             </form>
             <div className="claim-submit-container">
-            <button type="button" onClick={this.handleSubmit}>SUBMIT</button>
+            <button type="button" onClick={this.onSubmitClicked}>SUBMIT</button>
             </div>
             <div className="loading">Loading&#8230;</div>
             </div>
@@ -169,4 +169,4 @@ class CheckClaimForm extends Component {
     }
 }
 
-export default CheckClaimForm;
+export default CheckClaim;
