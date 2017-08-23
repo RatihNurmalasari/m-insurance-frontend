@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import ClaimDetailsForm from './components/ClaimDetailsForm.js';
 
-class CheckClaim extends Component {
+/**
+ * Class representing Claim Detail Page
+ * @extends Component
+ */
+class ClaimDetails extends Component {
+/**
+ * Render is a function to return html tags to be rendered
+ * @returns {html} Html tags to be rendered 
+ */
   render() {
     return (
         <div className="claim-detail-container">
@@ -15,4 +23,4 @@ class CheckClaim extends Component {
   }
 }
 
-export default CheckClaim;
+export default ClaimDetails;

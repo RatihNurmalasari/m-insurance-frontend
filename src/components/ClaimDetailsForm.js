@@ -1,13 +1,25 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 
+/**
+ * Class representing Claim Details Form.
+ * @extends Component
+ */
 class ClaimDetailsForm extends Component {
+    /**
+    * Create ClaimDetailsForm
+    * @param {object} props object that will construct ClaimDetailsForm including the functions in it
+    */
     constructor(props){
         super(props);
         this.mappingData=this.mappingData.bind(this);
         this.handleSubmit=this.handleSubmit.bind(this);
     }
     
+    /**
+    * Function that will be automatically called when component is ready
+    * 
+    */
     componentDidMount(){
         var dataClaim = window.sessionStorage.getItem('dataClaim');
         var dataProfile = window.sessionStorage.getItem('dataProfile');
@@ -16,6 +28,11 @@ class ClaimDetailsForm extends Component {
         this.mappingData(dataClaimObj,dataProfileObj);
     }
     
+    /**
+    * Mapping data from response
+    * @param {object} dataClaimObj contains data claim
+    * @param {object} dataProfileObj contains data profile
+    */
     mappingData(dataClaimObj,dataProfileObj){
         $(".patient-name-value").text(dataClaimObj.name);
         $(".claim-number-value").text(dataClaimObj.claimId);
@@ -33,12 +50,20 @@ class ClaimDetailsForm extends Component {
         $(".claim-city-value").text(dataClaimObj.hospital.city + ", " + dataClaimObj.hospital.state);
         $(".claim-country-value").text(dataClaimObj.hospital.zipcode + ", " + dataClaimObj.hospital.country);
     }
-
+    
+    /**
+    * Handle submit event
+    * @param {object} event contains native functions to be used on widget
+    */
     handleSubmit(event){
         event.preventDefault();
         window.location.assign('/checkclaim');
     }
-
+    
+    /**
+    * Render is a function to return html tags to be rendered
+    * @returns {html} Html tags to be rendered 
+    */ 
     render() {
         return (
             <div className="check-claim-detail">

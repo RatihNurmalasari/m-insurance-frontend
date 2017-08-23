@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import CheckClaimForm from './components/CheckClaimForm.js';
 
+/**
+ * Class representing CheckClaim Page.
+ * @extends Component
+ */
 class CheckClaim extends Component {
+/**
+ * Render is a function to return html tags to be rendered
+ * @returns {html} Html tags to be rendered 
+ */
   render() {
     return (
         <div className="claim-container">

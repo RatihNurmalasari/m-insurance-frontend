@@ -3,7 +3,15 @@ import $ from 'jquery';
 import * as Validator from '../util/Validator.js';
 import * as API from '../util/API.js';
 
+/**
+ * Class representing Check Claim Form.
+ * @extends Component
+ */
 class CheckClaimForm extends Component {
+    /**
+    * Create CheckClaimForm
+    * @param {object} props object that will construct CheckClaimForm including the functions in it
+    */
     constructor(props){
         super(props);
         this.handleSubmit=this.handleSubmit.bind(this);
@@ -13,6 +21,10 @@ class CheckClaimForm extends Component {
         this.validateClaimNumber=this.validateClaimNumber.bind(this);
     }
     
+    /**
+    * Function that will be automatically called when component is ready
+    * 
+    */
     componentDidMount(){
         //request for taxonomy numbers
         var taxonomyDummy = [8282474042,8282727332];
@@ -25,6 +37,10 @@ class CheckClaimForm extends Component {
         })
     }
     
+    /**
+    * Handle submit event
+    * @param {object} event contains native functions to be used on widget
+    */
     handleSubmit(event){
         var claimNumber = $("#claim-number").val();
         var isValid = this.handleValidation(claimNumber);
@@ -47,16 +63,27 @@ class CheckClaimForm extends Component {
         }
     }
     
+    /**
+    * Mapping data to dropdown
+    * @param {array} taxonomyDummy collections of data to be mapped to dropdown
+    */
     createDropdown(taxonomyDummy){
          for(var i=0; i<taxonomyDummy.length; i++){
              $("#taxDrpDown").append("<div>HIPPA CODE - " + taxonomyDummy[i] +"</div>");
          }
     }
     
+    /**
+    * Open taaxonomy dropdown
+    */
     openTaxonomy(){
         $("#taxDrpDown").toggleClass("show");
     }
     
+    /**
+    * Handle validation on check claim page before API function get called
+    * @param {string} claimNumber number to be validated
+    */
     handleValidation(claimNumber){
         var isValidClaimNumber = this.validateClaimNumber(claimNumber);
         var isValidTaxonomy = $("#taxonomy>p").text() !== "Please Select" ? true : false;
@@ -85,7 +112,11 @@ class CheckClaimForm extends Component {
         }
         return allValid;
     }
-
+    
+    /**
+    * Handle validation on claim number
+    * @param {string} claimNumber number to be validated
+    */
     validateClaimNumber(claimNumber){
         var isValid=true;
         var errorMsg = "";
@@ -99,6 +130,10 @@ class CheckClaimForm extends Component {
         return {isValid:isValid,errorMsg:errorMsg};
     }
     
+    /**
+    * Render is a function to return html tags to be rendered
+    * @returns {html} Html tags to be rendered 
+    */    
     render() {
         return (
             <div className="check-claim">

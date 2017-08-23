@@ -3,13 +3,25 @@ import * as Validator from '../util/Validator.js';
 import $ from 'jquery';
 import * as API from '../util/API.js';
 
-class LoginBox extends Component {
+/**
+ * Class representing Login Box.
+ * @extends Component
+ */
 
+class LoginBox extends Component {
+    /**
+    * Create LoginBox
+    * @param {object} props object that will construct LoginBox including the functions in it
+    */
     constructor(props){
         super(props);
         this.handleSubmit=this.handleSubmit.bind(this);
     }
-
+    
+    /**
+    * Handle submit event
+    * @param {object} event contains native functions to be used on widget
+    */
     handleSubmit(event){
         event.preventDefault();
         var emailElm = $("#email").val();
@@ -42,7 +54,12 @@ class LoginBox extends Component {
             });
         }
     }
-
+    
+    /**
+    * Handle validation on login box before API function get called
+    * @param {string} email email address to be validated with password
+    * @param {string} password password to be validated with email
+    */
     handleValidation(email,password){
         var isValidEmail = this.validateEmail(email);
         var isValidPassword = this.validatePassword(password);
@@ -64,7 +81,12 @@ class LoginBox extends Component {
         }
         return allValid;
     }
-
+    
+    /**
+    * Handle validation on email address
+    * @param {string} email email address to be validated
+    * @return {object} {isValid:isValid,errorMsg:errorMsg}
+    */
     validateEmail(email){
         var isValid=true;
         var errorMsg = "";
@@ -77,7 +99,12 @@ class LoginBox extends Component {
         }
         return {isValid:isValid,errorMsg:errorMsg};
     }
-
+    
+    /**
+    * Handle validation on email address
+    * @param {string} password address to be validated
+    * @return {object} {isValid:isValid,errorMsg:errorMsg}
+    */
     validatePassword(password){
         var isValid=true;
         var errorMsg = "";
@@ -87,7 +114,11 @@ class LoginBox extends Component {
         }
         return {isValid:isValid,errorMsg:errorMsg};
     }
-
+    
+    /**
+    * Handle watch password event
+    * @param {object} event contains native functions to be used on widget
+    */
     handleWatch(event){
         event.preventDefault();
         var currAttr = document.getElementById("password").getAttribute("type");
@@ -103,7 +134,11 @@ class LoginBox extends Component {
             $(".password-watch").css("background-image","url(../../assets/images/show.png)");
         }
     }
-
+    
+    /**
+    * Render is a function to return html tags to be rendered
+    * @returns {html} Html tags to be rendered 
+    */
     render() {
         return (
             <div className="login">
