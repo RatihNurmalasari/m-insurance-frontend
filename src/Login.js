@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import LoginView from './components/LoginView.js';
+import Header from './components/common/Header.js';
+import Footer from './components/common/Footer.js';
 
 /**
  * Class representing Login Page.
@@ -12,10 +14,14 @@ class Login extends Component {
  */
   render() {
     return (
-        <div className="main-background">
-                <img src="assets/images/manulife-background.png" alt="manulife-background"></img>
-                <div className="login-container">
-                <LoginView/>
+        <div>
+            <div className="main-background-login">
+                <Header/>
+                    <img src="assets/images/manulife-banner.png" alt="manulife-background"></img>
+                <Footer/>
+            </div>
+            <div className="login-container">
+                        <LoginView/>
             </div>
         </div>
     );

@@ -137,6 +137,7 @@ class CheckClaim extends Component {
     render() {
         return (
             <div className="check-claim">
+            <img src="assets/images/image_check_claim_status.png" alt="manulife-background"></img>
             <div className="claimText">
             <p>Fill in information</p>
 

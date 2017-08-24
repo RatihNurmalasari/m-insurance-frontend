@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import CheckClaim from './components/CheckClaim.js';
+import Header from './components/common/Header.js';
+import Footer from './components/common/Footer.js';
 
 /**
  * Class representing CheckClaim Page.
@@ -12,13 +14,12 @@ class CheckClaimPage extends Component {
  */
   render() {
     return (
-        <div className="claim-container">
-            <div className="header">
-                <img src="assets/images/Header - User logged in.png" alt="Header - User logged in"></img>
-                <img src="assets/images/image_check_claim_status.png" alt="image_check_claim_status"></img>
-            </div>
-            <CheckClaim/>
-            
+        <div>
+            <Header/>
+                <div className="claim-container">
+                    <CheckClaim/>
+                </div>
+            <Footer/>
         </div>
     );
   }
