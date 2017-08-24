@@ -1,10 +1,10 @@
 ---
 applications:
-- name: manulife-frontend-poc
+- name: manulife-website
   memory: 1G
   instances: 1
   domain: cfapps.io
-  host: manulife-frontend-poc
+  host: manulife-website-interludial-proempiricist
   command: npm start
   buildpack: https://github.com/cloudfoundry/nodejs-buildpack
   port: 8081
