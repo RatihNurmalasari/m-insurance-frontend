@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import LoginView from './components/LoginView.js';
-import Header from './components/common/Header.js';
-import Footer from './components/common/Footer.js';
+import LoginView from './components/view/LoginView.js';
+import HeaderView from './components/view/common/HeaderView.js';
+import FooterView from './components/view/common/FooterView.js';
 
 /**
  * Class representing Login Page.
@@ -16,9 +16,9 @@ class Login extends Component {
     return (
         <div>
             <div className="main-background-login">
-                <Header/>
+                <HeaderView/>
                     <img src="assets/images/manulife-banner.png" alt="manulife-background"></img>
-                <Footer/>
+                <FooterView/>
             </div>
             <div className="login-container">
                 <LoginView/>

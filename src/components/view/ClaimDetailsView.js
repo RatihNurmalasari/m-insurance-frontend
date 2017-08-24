@@ -1,21 +1,12 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
+import * as ClaimDetailsController from '../controller/ClaimDetailsViewController.js'
 
 /**
  * Class representing Claim Details.
  * @extends Component
  */
 class ClaimDetails extends Component {
-    /**
-    * Create ClaimDetails
-    * @param {object} props object that will construct ClaimDetails including the functions in it
-    */
-    constructor(props){
-        super(props);
-        this.mappingData=this.mappingData.bind(this);
-        this.handleSubmit=this.handleSubmit.bind(this);
-    }
-    
+        
     /**
     * Function that will be automatically called when component is ready
     * 
@@ -25,30 +16,7 @@ class ClaimDetails extends Component {
         var dataProfile = window.sessionStorage.getItem('dataProfile');
         var dataClaimObj = JSON.parse(dataClaim);
         var dataProfileObj = JSON.parse(dataProfile);
-        this.mappingData(dataClaimObj,dataProfileObj);
-    }
-    
-    /**
-    * Mapping data from response
-    * @param {object} dataClaimObj contains claim details
-    * @param {object} dataProfileObj contains member information
-    */
-    mappingData(dataClaimObj, dataProfileObj){
-        $(".patient-name-value").text(dataClaimObj.name);
-        $(".claim-number-value").text(dataClaimObj.claimId);
-        $(".service-date-value").text(dataClaimObj.fromDate + " - " + dataClaimObj.endDate);
-        $(".status-value").text(dataClaimObj.status);
-        $(".address-value").text(dataProfileObj.address);
-        $(".city-value").text(dataProfileObj.city + ", " + dataProfileObj.state);
-        $(".country-value").text(dataProfileObj.zipcode + ", " + dataProfileObj.country);
-        $(".patient-amount-billed-value").text(dataClaimObj.amountBilled);
-        $(".service-amount-paid-coverage-value").text(dataClaimObj.amountPaid);
-        $(".claim-amount-paid-coverage-to-value").text(dataClaimObj.hospital.name);
-        
-        
-        $(".claim-address-value").text(dataClaimObj.hospital.address);
-        $(".claim-city-value").text(dataClaimObj.hospital.city + ", " + dataClaimObj.hospital.state);
-        $(".claim-country-value").text(dataClaimObj.hospital.zipcode + ", " + dataClaimObj.hospital.country);
+        ClaimDetailsController.mappingData(dataClaimObj,dataProfileObj);
     }
     
     /**
@@ -56,8 +24,7 @@ class ClaimDetails extends Component {
     * @param {object} event contains native functions to be used on widget
     */
     handleSubmit(event){
-        event.preventDefault();
-        window.location.assign('/checkclaim');
+        ClaimDetailsController.handleSubmit(event);
     }
     
     /**

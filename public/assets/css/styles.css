@@ -351,6 +351,7 @@ a#back-prev-page {
     display: block;
     margin-bottom: 25px;
     cursor: pointer;
+    text-decoration: none;
 }
 #member-info-container, #claim-details-container, #charge-details-container {
     margin: 0 20px 20px 20px;

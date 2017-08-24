@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ClaimDetails from './components/ClaimDetails.js';
-import Header from './components/common/Header.js';
-import Footer from './components/common/Footer.js';
+import ClaimDetailsView from './components/view/ClaimDetailsView.js';
+import HeaderView from './components/view/common/HeaderView.js';
+import FooterView from './components/view/common/FooterView.js';
 
 /**
  * Class representing Claim Details Page
@@ -15,11 +15,11 @@ class ClaimDetailsPage extends Component {
   render() {
     return (
         <div>
-        <Header/>
+        <HeaderView/>
         <div className="claim-detail-container">
-            <ClaimDetails/>
+            <ClaimDetailsView/>
         </div>
-        <Footer/>
+        <FooterView/>
         </div>
     );
   }
