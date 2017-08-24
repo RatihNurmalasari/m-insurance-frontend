@@ -4,13 +4,13 @@ import Header from './components/common/Header.js';
 import Footer from './components/common/Footer.js';
 
 /**
- * Class representing CheckClaim Page.
+ * Class representing Check Claim Page.
  * @extends Component
  */
 class CheckClaimPage extends Component {
 /**
  * Render is a function to return html tags to be rendered
- * @returns {html} Html tags to be rendered 
+ * @returns {HTML} HTML tags to be rendered 
  */
   render() {
     return (

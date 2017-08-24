@@ -85,7 +85,7 @@ class LoginView extends Component {
     /**
     * Handle validation on email address
     * @param {string} email email address to be validated
-    * @return {object} {isValid:isValid,errorMsg:errorMsg}
+    * @return {object} {"isValid": isValid, "errorMsg": errorMsg}
     */
     validateEmail(email){
         var isValid=true;
@@ -103,7 +103,7 @@ class LoginView extends Component {
     /**
     * Handle validation on email address
     * @param {string} password address to be validated
-    * @return {object} {isValid:isValid,errorMsg:errorMsg}
+    * @return {object} {"isValid": isValid, "errorMsg": errorMsg}
     */
     validatePassword(password){
         var isValid=true;
@@ -161,7 +161,7 @@ class LoginView extends Component {
     
     /**
     * Render is a function to return html tags to be rendered
-    * @returns {html} Html tags to be rendered 
+    * @returns {HTML} HTML tags to be rendered 
     */
     render() {
         return (

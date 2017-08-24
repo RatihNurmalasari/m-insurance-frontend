@@ -4,13 +4,13 @@ import * as Validator from '../util/Validator.js';
 import * as API from '../util/API.js';
 
 /**
- * Class representing Check Claim Form.
+ * Class representing Check Claim.
  * @extends Component
  */
 class CheckClaim extends Component {
     /**
-    * Create CheckClaimForm
-    * @param {object} props object that will construct CheckClaimForm including the functions in it
+    * Create CheckClaim
+    * @param {object} props object that will construct CheckClaim including the functions in it
     */
     constructor(props){
         super(props);
@@ -65,11 +65,11 @@ class CheckClaim extends Component {
     
     /**
     * Mapping data to dropdown
-    * @param {array} taxonomyDummy collections of data to be mapped to dropdown
+    * @param {array} taxonomy collections to be mapped to dropdown
     */
-    createDropdown(taxonomyDummy){
-         for(var i=0; i<taxonomyDummy.length; i++){
-             $("#taxDrpDown").append("<div>HIPPA CODE - " + taxonomyDummy[i] +"</div>");
+    createDropdown(taxonomy){
+         for(var i=0; i<taxonomy.length; i++){
+             $("#taxDrpDown").append("<div>HIPPA CODE - " + taxonomy[i] +"</div>");
          }
     }
     
@@ -132,7 +132,7 @@ class CheckClaim extends Component {
     
     /**
     * Render is a function to return html tags to be rendered
-    * @returns {html} Html tags to be rendered 
+    * @returns {HTML} HTML tags to be rendered 
     */    
     render() {
         return (

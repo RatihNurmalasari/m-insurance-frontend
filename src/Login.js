@@ -10,7 +10,7 @@ import Footer from './components/common/Footer.js';
 class Login extends Component {
 /**
  * Render is a function to return html tags to be rendered
- * @returns {html} Html tags to be rendered 
+ * @returns {HTML} HTML tags to be rendered 
  */
   render() {
     return (

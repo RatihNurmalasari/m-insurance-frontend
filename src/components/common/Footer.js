@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 
 /**
- * Class representing Header.
+ * Class representing Footer.
  * @extends Component
  */
 class Footer extends Component {
@@ -34,7 +34,7 @@ class Footer extends Component {
     * Redirected page to accessibility page
     * @param {object} event contains native functions to be used on widget
     */
-    onClickAccessibility(event){
+    onAccessibilityClicked(event){
         
     }
     
@@ -58,13 +58,13 @@ class Footer extends Component {
     * Redirected page to sitemap page
     * @param {object} event contains native functions to be used on widget
     */
-    onClickSitemap(event){
+    onSitemapClicked(event){
         
     }
     
     /**
     * Render is a function to return html tags to be rendered
-    * @returns {html} Html tags to be rendered 
+    * @returns {HTML} HTML tags to be rendered 
     */ 
     render() {
         return (

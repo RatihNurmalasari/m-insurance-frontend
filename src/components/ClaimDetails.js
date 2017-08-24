@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 
 /**
- * Class representing Claim Details Form.
+ * Class representing Claim Details.
  * @extends Component
  */
 class ClaimDetails extends Component {
     /**
-    * Create ClaimDetailsForm
-    * @param {object} props object that will construct ClaimDetailsForm including the functions in it
+    * Create ClaimDetails
+    * @param {object} props object that will construct ClaimDetails including the functions in it
     */
     constructor(props){
         super(props);
@@ -30,10 +30,10 @@ class ClaimDetails extends Component {
     
     /**
     * Mapping data from response
-    * @param {object} dataClaimObj contains data claim
-    * @param {object} dataProfileObj contains data profile
+    * @param {object} dataClaimObj contains claim details
+    * @param {object} dataProfileObj contains member information
     */
-    mappingData(dataClaimObj,dataProfileObj){
+    mappingData(dataClaimObj, dataProfileObj){
         $(".patient-name-value").text(dataClaimObj.name);
         $(".claim-number-value").text(dataClaimObj.claimId);
         $(".service-date-value").text(dataClaimObj.fromDate + " - " + dataClaimObj.endDate);
@@ -62,7 +62,7 @@ class ClaimDetails extends Component {
     
     /**
     * Render is a function to return html tags to be rendered
-    * @returns {html} Html tags to be rendered 
+    * @returns {HTML} HTML tags to be rendered 
     */ 
     render() {
         return (
