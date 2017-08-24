@@ -21,7 +21,7 @@ class Login extends Component {
                 <Footer/>
             </div>
             <div className="login-container">
-                        <LoginView/>
+                <LoginView/>
             </div>
         </div>
     );

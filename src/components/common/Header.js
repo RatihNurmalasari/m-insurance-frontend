@@ -18,7 +18,7 @@ class Header extends Component {
     }
     
     /**
-    * This function will render the sub menu component for personal user
+    * This function will render the navigation menu component for personal user
     * @param {object} event contains native functions to be used on widget
     */
     onPersonalClicked(event){
@@ -26,7 +26,7 @@ class Header extends Component {
     }
     
     /**
-    * This function will render the sub menu component for business user
+    * This function will render the navigation menu component for business user
     * @param {object} event contains native functions to be used on widget
     */
     onBusinessClicked(event){
@@ -50,7 +50,7 @@ class Header extends Component {
     }
     
     /**
-    * Handle search function and redirected page to search result page
+    * Handle search function and redirect to search result page
     * @param {string} searchText the sentence to be searched
     */
     onSearchClicked(searchText){
@@ -82,7 +82,7 @@ class Header extends Component {
     }
     
     /**
-    * Render is a function to return html tags to be rendered
+    * Render is a function to return HTML tags to be rendered
     * @returns {HTML} HTML tags to be rendered 
     */ 
     render() {
