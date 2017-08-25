@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import * as ClaimDetailsController from '../controller/ClaimDetailsViewController.js'
+import {CheckClaimDetailsViewController,
+        mappingDataSignal,
+        handleSubmitSignal
+       } from '../controller/ClaimDetailsViewController.js';
 
 /**
  * Class representing Claim Details.
@@ -16,7 +19,7 @@ class ClaimDetails extends Component {
         var dataProfile = window.sessionStorage.getItem('dataProfile');
         var dataClaimObj = JSON.parse(dataClaim);
         var dataProfileObj = JSON.parse(dataProfile);
-        ClaimDetailsController.mappingData(dataClaimObj,dataProfileObj);
+        mappingDataSignal.dispatch(dataClaimObj,dataProfileObj);
     }
     
     /**
@@ -24,7 +27,7 @@ class ClaimDetails extends Component {
     * @param {object} event contains native functions to be used on widget
     */
     handleSubmit(event){
-        ClaimDetailsController.handleSubmit(event);
+        handleSubmitSignal.dispatch(event);
     }
     
     /**
@@ -102,8 +105,9 @@ class ClaimDetails extends Component {
             
             </span>
             </div>
+            
             </div>
-
+            <CheckClaimDetailsViewController/>
             </div>
 
         );

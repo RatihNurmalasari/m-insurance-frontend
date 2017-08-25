@@ -1,15 +1,46 @@
+import React, { Component } from 'react';
+import MiniSignal from 'mini-signals';
+import $ from 'jquery';
 import * as Validator from '../../util/Validator.js';
 import * as API from '../../util/API.js';
-import $ from 'jquery';
 
-import React, { Component } from 'react';
-
+export const onWatchPasswordClickedSignal = new MiniSignal();
+export const onSigInClickedSignal = new MiniSignal();
 
 /**
  * Class representing Login View Controller.
  * @extends Component
  */
-class LoginViewController extends Component {
+export class LoginViewController extends Component {
+
+    /**
+     * Create a LoginViewController.
+     * 
+     */
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            show: false
+        };
+        this.onSignInClicked = this.onSignInClicked.bind(this);
+        this.handleValidation = this.handleValidation.bind(this);
+        this.validateEmail = this.validateEmail.bind(this);
+        this.validatePassword = this.validatePassword.bind(this);
+        this.onWatchPasswordClicked = this.onWatchPasswordClicked.bind(this);
+    }
+    
+    /**
+    * Function that will be automatically called when component is ready
+    * 
+    */
+    componentDidMount() {
+        //add signal listener
+        this.binding = onWatchPasswordClickedSignal.add(this.onWatchPasswordClicked);
+        this.binding = onSigInClickedSignal.add(this.onSignInClicked);
+    }
+
+
     /**
     * Handle sign in event event
     * @param {object} event contains native functions to be used on widget
@@ -18,7 +49,7 @@ class LoginViewController extends Component {
         event.preventDefault();
         var emailElm = $("#email").val();
         var passwordElm = $("#password").val();
-        var isValid = handleValidation(emailElm,passwordElm);
+        var isValid = this.handleValidation(emailElm,passwordElm);
         if(isValid){
             $(".loading").css("display","block");
 
@@ -53,8 +84,8 @@ class LoginViewController extends Component {
     * @param {string} password password to be validated with email
     */
     handleValidation(email,password){
-        var isValidEmail = validateEmail(email);
-        var isValidPassword = validatePassword(password);
+        var isValidEmail = this.validateEmail(email);
+        var isValidPassword = this.validatePassword(password);
         var allValid = isValidEmail.isValid && isValidPassword.isValid ? true : false;
         if (!isValidEmail.isValid){
             $("input#email").addClass("input-error");
@@ -150,117 +181,10 @@ class LoginViewController extends Component {
     onCreateAccountClicked(event){
 
     }
-}
-
-export function onSignInClicked(event){
-    event.preventDefault();
-    var emailElm = $("#email").val();
-    var passwordElm = $("#password").val();
-    var isValid = handleValidation(emailElm,passwordElm);
-    if(isValid){
-        $(".loading").css("display","block");
-
-        var url = "http://manulife-service.cfapps.io/user/login";
-        var postBody = {
-            email:emailElm,
-            password:passwordElm
-        };
-        API.ajaxRequest(url,postBody,'POST',function(response){
-            //success
-            var responseString = JSON.stringify(response)
-            window.sessionStorage.setItem("dataProfile",responseString)
-            $("input#email").removeClass("input-error");
-            $("input#password").removeClass("input-error");
-            $(".password-watch").css("background-image","url(../../assets/images/show.png)");
-            $(".loginbox-error").text("");
-            window.location.assign('/checkclaim');
-        }, function(error){
-            //error
-            $("input#password").addClass("input-error");
-            $("input#email").addClass("input-error");
-            $(".loginbox-error").text(error.statusText);
-            $(".password-watch").css("background-image","url(../../assets/images/show_error.png)");
-            $(".loading").css("display","none");
-        });
+    
+    render() {
+        return (
+            null
+        )
     }
-}
-
-
-export function handleValidation(email,password){
-    var isValidEmail = validateEmail(email);
-    var isValidPassword = validatePassword(password);
-    var allValid = isValidEmail.isValid && isValidPassword.isValid ? true : false;
-    if (!isValidEmail.isValid){
-        $("input#email").addClass("input-error");
-        $(".loginbox-error").text(isValidEmail.errorMsg);
-    } else {
-        $("input#email").removeClass("input-error");
-        $(".loginbox-error").text("");
-    }
-    if (!isValidPassword.isValid){
-        $("input#password").addClass("input-error");
-        $(".loginbox-error").text(isValidPassword.errorMsg);
-        $(".password-watch").css("background-image","url(../../assets/images/show_error.png)");
-    } else {
-        $("input#password").removeClass("input-error");
-        $(".password-watch").css("background-image","url(../../assets/images/show.png)");
-    }
-    return allValid;
-}
-
-
-export function validateEmail(email){
-    var isValid=true;
-    var errorMsg = "";
-    if(email === ""){
-        isValid = false;
-        errorMsg = "Please enter your email address and your password.";
-    }else {
-        isValid = Validator.isEmailValid(email);
-        errorMsg = isValid ? "" : "Please re-enter your email address. Remember, the valid format is “email@domain.com”";
-    }
-    return {isValid:isValid,errorMsg:errorMsg};
-}
-
-
-export function validatePassword(password){
-    var isValid=true;
-    var errorMsg = "";
-    if(password === ""){
-        isValid = false;
-        errorMsg = "Please enter your email address and your password.";
-    }
-    return {isValid:isValid,errorMsg:errorMsg};
-}
-
-
-export function onWatchPasswordClicked(event){
-    event.preventDefault();
-    var currAttr = document.getElementById("password").getAttribute("type");
-    var passwordElm = document.getElementById("password");
-    if(currAttr==="password"){
-        passwordElm.setAttribute("type","text");
-    } else {
-        passwordElm.setAttribute("type","password");
-    }
-    if (passwordElm.getAttribute("type") === "text"){
-        $(".password-watch").css("background-image","url(../../assets/images/hide.png)");
-    } else {
-        $(".password-watch").css("background-image","url(../../assets/images/show.png)");
-    }
-}
-
-
-export function onRememberMeChecked(event){
-
-}
-
-
-export function onForgotPasswordClicked(event){
-
-}
-
-
-export function onCreateAccountClicked(event){
-
 }

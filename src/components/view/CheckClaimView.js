@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import * as CheckClaimController from '../controller/CheckClaimViewController.js'
+import {CheckClaimViewController,
+        onTaxonomyDropdownClickedSignal,
+        onSubmitClickedSignal,
+        oncreateDropdownSignal
+       } from '../controller/CheckClaimViewController.js';
 import $ from 'jquery';
 
 /**
@@ -15,7 +19,7 @@ class CheckClaim extends Component {
     componentDidMount(){
         //request for taxonomy numbers
         var taxonomyDummy = [8282474042,8282727332];
-        CheckClaimController.createDropdown(taxonomyDummy);
+        oncreateDropdownSignal.dispatch(taxonomyDummy);
         //handle click on dropdown
         $("#taxDrpDown>div").click(function(e){
             var selectedText = $(this).text()
@@ -25,18 +29,19 @@ class CheckClaim extends Component {
     }
 
     /**
-    * Open taxonomy dropdown
+    * Open dropdown and call signal
+    * @param {object} event contains native functions to be used on widget
     */
-    onTaxonomyDropdownClicked(event){
-        CheckClaimController.onTaxonomyDropdownClicked(event)
+    openDropdown(event){
+        onTaxonomyDropdownClickedSignal.dispatch(event)
     }
 
     /**
-    * Handle submit event
+    * Handle submit event and call signal
     * @param {object} event contains native functions to be used on widget
     */
-    onSubmitClicked(event){
-        CheckClaimController.onSubmitClicked(event)
+    submitClick(event){
+        onSubmitClickedSignal.dispatch(event)
     }
     /**
     * Render is a function to return html tags to be rendered
@@ -61,7 +66,7 @@ class CheckClaim extends Component {
             <p>Taxonomy*</p>
 
             <div className="taxonomy-container">
-            <div type="text" id="taxonomy" onClick={this.onTaxonomyDropdownClicked}><p>Please Select</p></div>
+            <div type="text" id="taxonomy" onClick={this.openDropdown}><p>Please Select</p></div>
             <span className="taxonomy-img"></span>
             <div id="taxDrpDown" className="dropdown-content">
             </div>
@@ -69,9 +74,10 @@ class CheckClaim extends Component {
             </span>
             </form>
             <div className="claim-submit-container">
-            <button type="button" onClick={this.onSubmitClicked}>SUBMIT</button>
+            <button type="button" onClick={this.submitClick}>SUBMIT</button>
             </div>
             <div className="loading">Loading&#8230;</div>
+            <CheckClaimViewController/>
             </div>
 
         );

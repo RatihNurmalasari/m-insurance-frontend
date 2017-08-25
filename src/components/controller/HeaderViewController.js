@@ -5,7 +5,8 @@ import React, { Component } from 'react';
  * Class representing Header View Controller.
  * @extends Component
  */
-class HeaderViewController extends Component {
+
+export class HeaderViewController extends Component {
     /**
     * This function will render the sub menu component for personal user
     * @param {object} event contains native functions to be used on widget
@@ -69,46 +70,4 @@ class HeaderViewController extends Component {
     onNavMenuClicked(menu){
 
     }
-}
-
-export default HeaderViewController
-
-
-export function onPersonalClicked(event){
-
-}
-
-
-export function onBusinessClicked(event){
-
-}
-
-
-export function onSelectLanguangeClicked(languange){
-
-}
-
-
-export function onContactUsClicked(event){
-
-}
-
-
-export function onSearchClicked(searchText){
-
-}
-
-
-export function onSignInClicked(event){
-
-}
-
-
-export function onSignOutClicked(event){
-
-}
-
-
-export function onNavMenuClicked(menu){
-
 }
