@@ -14,7 +14,7 @@
 	<properties>
 		<java-version>1.6</java-version>
 		<npm.version>1.2.9</npm.version>
-		<nodejs.directory>${workspace}/nodejs</nodejs.directory>
+		<nodejs.directory>nodejs</nodejs.directory>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -120,63 +120,6 @@
 					<showWarnings>true</showWarnings>
 					<showDeprecation>true</showDeprecation>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.2.1</version>
-				<executions>
-					<execution>
-						<id>JAM install dependencies</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>exec</goal>
-						</goals>
-						<configuration>
-							<workingDirectory>${workspace}/src/main/javascript</workingDirectory>
-							<executable>${nodejs.directory}/node</executable>
-							<arguments>
-								<argument>${nodejs.directory}/node_modules/jamjs/bin/jam.js</argument>
-								<argument>install</argument>
-							</arguments>
-						</configuration>
-					</execution>
-					<execution>
-						<id>JAM compile</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>exec</goal>
-						</goals>
-						<configuration>
-							<workingDirectory>${workspace}/src/main/javascript</workingDirectory>
-							<executable>${nodejs.directory}/node</executable>
-							<arguments>
-								<argument>${nodejs.directory}/node_modules/jamjs/bin/jam.js</argument>
-								<argument>compile</argument>
-								<argument>-i</argument>
-								<argument>app.js</argument>
-								<argument>${workspace}/src/main/webapp/resources/js/app.js</argument>
-							</arguments>
-						</configuration>
-					</execution>
-					<execution>
-						<id>LESS compile</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>exec</goal>
-						</goals>
-						<configuration>
-							<workingDirectory>${workspace}/src/main/less</workingDirectory>
-							<executable>${nodejs.directory}/node</executable>
-							<arguments>
-								<argument>${nodejs.directory}/node_modules/less/bin/lessc</argument>
-								<argument>-x</argument>
-								<argument>style.less</argument>
-								<argument>${workspace}/src/main/webapp/resources/css/style.css</argument>
-							</arguments>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>
