@@ -30,7 +30,7 @@ class CheckClaimForm extends Component {
         var isValid = this.handleValidation(claimNumber);
         if(isValid){
             $(".loading").css("display","block");
-            var url = "http://manulife-claim-dockermgmt.centralus.cloudapp.azure.com:6060/manulife/claim/" + parseFloat(claimNumber);
+            var url = "http://it-trial-test.apigee.net/manulife/claim/" + parseFloat(claimNumber);
             var postBody = '';
             API.ajaxRequest(url,postBody,'GET',function(response){
                 //success
