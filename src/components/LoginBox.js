@@ -30,7 +30,7 @@ class LoginBox extends Component {
         if(isValid){
             $(".loading").css("display","block");
 
-            var url = "http://manulife-service.cfapps.io/user/login";
+            var url = "http://it-trial-prod.apigee.net/pcf/user/login";
             var postBody = {
                 email:emailElm,
                 password:passwordElm
